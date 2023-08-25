@@ -8,9 +8,6 @@ const app=express();
 app.use(cors())
 app.use(express.json());
 app.get("/",async (req,res)=>{
-    const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGU4NjMzMTgxYmU2NTdhMzhkNzhkYjIiLCJpYXQiOjE2OTI5NTE5MjJ9.NsvD8fjj4vZmWKQDcQ7zZaa7xy9prncaAsLRE2yVRsM"
-    const result=jwt.verify(token,process.env.PRIVATE_KEY);
-    console.log(new Date(result.iat));
     try {
         res.json({"msg":"You are at home"})
     } catch (err) {
