@@ -21,10 +21,10 @@ export const Header = () => {
             Login
           </Link>
         </> : <>
-        <Link>
-            Hello,{localStorage.getItem("user_name")}
+          <Link>
+            🙎‍♂️{localStorage.getItem("user_name")}
           </Link>
-          <Link onClick={()=>{
+          <Link onClick={() => {
             localStorage.removeItem("token");
             localStorage.removeItem("user_name")
             setLogged(false)

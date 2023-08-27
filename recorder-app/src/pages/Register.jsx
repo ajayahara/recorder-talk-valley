@@ -19,7 +19,7 @@ export const Register = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res=await fetch(`http://localhost:5050/user/resister`,{
+            const res=await fetch(`https://talkvalley.onrender.com/user/resister`,{
                 method:"POST",
                 body:JSON.stringify(user),
                 headers:{

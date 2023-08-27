@@ -18,7 +18,7 @@ export const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res=await fetch(`http://localhost:5050/user/login`,{
+            const res=await fetch(`https://talkvalley.onrender.com/user/login`,{
                 method:"POST",
                 body:JSON.stringify(user),
                 headers:{
