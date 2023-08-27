@@ -23,14 +23,27 @@ export const ScreenJsx = () => {
     const getPermission = async () => {
         if ("MediaRecorder" in window) {
             try {
-                const videoStream = await navigator.mediaDevices.getUserMedia({ audio: true, video:{height:240,width:400} });
-                const screenStream = await navigator.mediaDevices.getDisplayMedia({ audio: true, video: true });
-                setStream(screenStream)
+                // accessing webcam
+                const videoStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: { height: 240, width: 400 } });
                 webcamRef.current.srcObject = videoStream;
-                setPermission(true);
+                //accessing screen share
+                const screenStream = await navigator.mediaDevices.getDisplayMedia({ audio: true, video: true });
+                let displaySurface = screenStream.getVideoTracks()[0].getSettings().displaySurface;
+                if (displaySurface !== 'monitor') {
+                    throw 'Selection of entire screen mandatory!';
+                }else{
+                    screenStream.getVideoTracks()[0].onended = function () {
+                        setPermission(false);
+                        setIsRecording(false);
+                        togglePictureInPicture(false)
+                        recorderRef.current?.stop();
+                    };
+                    const combinedStream=new MediaStream([...videoStream.getAudioTracks(),...screenStream.getVideoTracks()])
+                    setStream(combinedStream)
+                    setPermission(true);
+                }
             } catch (err) {
-                console.log(err)
-                alert("Error while accessing permission")
+                alert(`Sharing Error:${err}`)
             }
         } else {
             alert("Unable to access mediaRecorder")
@@ -58,6 +71,8 @@ export const ScreenJsx = () => {
     }
     // stop screen recording
     const stopRecording = async () => {
+        setIsRecording(false);
+        togglePictureInPicture(!isPictureInPictureActive)
         try {
             recorderRef.current.onstop = () => {
                 const videoBulb = new Blob(localRecording, { type: "audio/webm" })
@@ -69,8 +84,6 @@ export const ScreenJsx = () => {
         } catch (err) {
             alert("Eroor in stop recording")
         }
-        setIsRecording(false);
-        togglePictureInPicture(!isPictureInPictureActive)
     }
     return <>
         {!logged ?
