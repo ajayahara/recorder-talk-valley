@@ -37,7 +37,7 @@ app.post("/user/login",async (req,res)=>{
             res.json({ok:true,msg:"No User Found"})
         }else{
             const token=jwt.sign({userId:existingusers[0]._id},process.env.PRIVATE_KEY);
-            res.json({ok:true,msg:"Login Successful",token})
+            res.json({ok:true,msg:"Login Successful",token,name:existingusers[0].name})
         }
     } catch (err) {
         console.log(err)

@@ -22,10 +22,11 @@ export const Header = () => {
           </Link>
         </> : <>
         <Link>
-            Hello,User
+            Hello,{localStorage.getItem("user_name")}
           </Link>
           <Link onClick={()=>{
             localStorage.removeItem("token");
+            localStorage.removeItem("user_name")
             setLogged(false)
           }}>
             Logout

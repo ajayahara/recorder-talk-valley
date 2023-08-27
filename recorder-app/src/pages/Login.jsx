@@ -28,6 +28,7 @@ export const Login = () => {
             const data=await res.json();
            if(data.ok&&data.msg=="Login Successful"){
             localStorage.setItem("token",data.token);
+            localStorage.setItem("user_name",data.name)
             setLogged(true)
            }else{
             alert(data.msg)
