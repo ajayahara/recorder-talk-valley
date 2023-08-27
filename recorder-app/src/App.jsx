@@ -1,12 +1,12 @@
 import './App.css'
-import { Navigation } from './routes/Navigation'
+import { Header } from './components/Header'
+import { NavigationJsx } from './routes/Navigation'
 
 function App() {
-  
-
   return (
     <>
-      <Navigation/>
+      <Header/>
+      <NavigationJsx/>
     </>
   )
 }

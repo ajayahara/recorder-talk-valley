@@ -30,7 +30,7 @@ app.post("/user/resister",async (req,res)=>{
     }
 })
 app.post("/user/login",async (req,res)=>{
-    const {name,email,password}=req.body;
+    const {email,password}=req.body;
     try {
         const existingusers=await UserModel.find({email,password});
         if(!existingusers.length){

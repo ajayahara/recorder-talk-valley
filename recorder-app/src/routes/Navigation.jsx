@@ -1,14 +1,14 @@
 import {Route,Routes} from "react-router-dom"
-import { Home } from "../pages/Home"
 import { Login } from "../pages/Login"
 import { Register } from "../pages/Register"
-export const Navigation = () => {
+import { ScreenJsx } from "../pages/ScreenJsx"
+export const NavigationJsx = () => {
     
   return (
     <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<ScreenJsx/>} />
         <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
+        <Route path="/resister" element={<Register/>} />
         <Route path="*" element={<h2>Page Not Found</h2>} />
     </Routes>
   )

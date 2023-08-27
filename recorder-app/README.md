@@ -1,8 +1,17 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Navigator Object
+    1.online:-returns a boolean.It helps us to know if the user is online or not.
+    2.geolocation:-
+        const {geolocation} = navigator
+        const geolocationSuccess = (pos) => {
+        const location=pos.coords;
+        console.log("Your latitude is",location.latitude,"and Longitude is",location.longitude);
+        }
+        const geolocationError = (err) => {
+            console.log("Error in finding your location", err)
+        }
+        const geolocationOption = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        }
+        geolocation.getCurrentPosition(geolocationSuccess, geolocationError, geolocationOption)
